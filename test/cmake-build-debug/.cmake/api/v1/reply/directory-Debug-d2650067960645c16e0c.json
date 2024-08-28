@@ -1,0 +1,14 @@
+{
+	"backtraceGraph" : 
+	{
+		"commands" : [],
+		"files" : [],
+		"nodes" : []
+	},
+	"installers" : [],
+	"paths" : 
+	{
+		"build" : "/home/fabiana/Desktop/MPointers-Proyecto1/library/cmake-build-debug",
+		"source" : "/home/fabiana/Desktop/MPointers-Proyecto1/library"
+	}
+}

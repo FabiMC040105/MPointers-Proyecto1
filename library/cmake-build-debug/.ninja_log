@@ -1,0 +1,7 @@
+# ninja log v6
+192	227	1724874341757763539	MPointers_Proyecto1	5924144acaf3eb44
+0	169	1724874716335659228	CMakeFiles/MPointers_Proyecto1.dir/MPointer.cpp.o	e55a9ff0589f70a
+0	18	1724875129348799644	build.ninja	435588ec3c54d327
+0	172	1724875135716474893	CMakeFiles/MPointers_Proyecto1.dir/MPointer.cpp.o	e55a9ff0589f70a
+172	204	1724875135888466165	MPointers_Proyecto1	5924144acaf3eb44
+1	9	1724875315288575070	CMakeFiles/MPointers_Proyecto1.dir/MPointer.cpp.o	e55a9ff0589f70a
