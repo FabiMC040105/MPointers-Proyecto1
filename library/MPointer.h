@@ -10,10 +10,11 @@ class MPointer {
 
 private:
     T* ptr;
+    // constructor para la creacion a traves de New()
+    MPointer(T* p = nullptr) : ptr(p) {}
 
 public:
-    //Este es mi constructor
-    MPointer(T* p = nullptr) : ptr(p) {}
+
     //Destructor
     ~MPointer() {
         delete ptr;
@@ -56,7 +57,11 @@ public:
         }
         return *this;
     }
+
+    // Función para crear un nuevo MPointer
+    static MPointer<T> New() {
+        return MPointer<T>(new T());
+    }
 };
 
-
-#endif //POINTERWRAPPER_H
+#endif // POINTERWRAPPER_H
