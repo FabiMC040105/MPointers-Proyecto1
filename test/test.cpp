@@ -3,9 +3,11 @@
 
 using namespace std;
 
-int main()
-{
-    MPointer<int> p(new int(87));
-    cout <<"Valor: " << *p << endl;
+int main() {
+    MPointer<int> myPtr = MPointer<int>::New();
+    *myPtr = 42;
+    cout <<"El valor de myPtr es:" << *myPtr << endl;
+
+    return 0;
 
 }
