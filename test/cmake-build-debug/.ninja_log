@@ -1,7 +1,0 @@
-# ninja log v6
-1	19	1724875427456659546	build.ninja	63f745ae92284134
-0	14	1724875408145287170	/home/fabiana/Desktop/MPointers-Proyecto1/library/cmake-build-debug/CMakeFiles/MPointers_Proyecto1.dir/MPointer.cpp.o	7a79dbac91a7c295
-0	195	1724875431204539812	CMakeFiles/test.dir/test.cpp.o	424c97ffd4daa69a
-195	228	1724875431400533570	test	f633d717fb200baf
-3	242	1724902632608168368	CMakeFiles/test.dir/test.cpp.o	424c97ffd4daa69a
-242	312	1724902632848165157	test	f633d717fb200baf
