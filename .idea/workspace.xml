@@ -24,32 +24,9 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2d1c5ab7-f203-486c-801a-b086dcf43140" name="Changes" comment="gitignore">
+    <list default="true" id="2d1c5ab7-f203-486c-801a-b086dcf43140" name="Changes" comment="si pasa algo es culpa del profe">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/library/MPointer.h" beforeDir="false" afterPath="$PROJECT_DIR$/library/MPointer.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/library/MPointer.o" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/library/cmake-build-debug/.cmake/api/v1/query/cache-v2" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/library/cmake-build-debug/.cmake/api/v1/query/cmakeFiles-v1" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/library/cmake-build-debug/.cmake/api/v1/query/codemodel-v2" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/library/cmake-build-debug/.cmake/api/v1/query/toolchains-v1" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/library/cmake-build-debug/.cmake/api/v1/reply/cache-v2-9e7dc5363465bf4664cc.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/library/cmake-build-debug/.cmake/api/v1/reply/cmakeFiles-v1-d7f3d2bcb2748c1459a2.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/library/cmake-build-debug/.cmake/api/v1/reply/codemodel-v2-978edf6b3cd8ab62fdc7.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/library/cmake-build-debug/.cmake/api/v1/reply/directory-.-Debug-f5ebdc15457944623624.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/library/cmake-build-debug/.cmake/api/v1/reply/index-2024-08-28T19-58-49-0354.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/library/cmake-build-debug/.cmake/api/v1/reply/target-MPointers_Proyecto1-Debug-1637cf1d9dd4104e590c.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/library/cmake-build-debug/.cmake/api/v1/reply/toolchains-v1-7096c62e23c342eb06a8.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/library/cmake-build-debug/.ninja_deps" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/library/cmake-build-debug/.ninja_log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/library/cmake-build-debug/build.ninja" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/library/libMPointer.so" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/cmake-build-debug/.cmake/api/v1/reply/cmakeFiles-v1-29a963fcb5cc4da34ce3.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/cmake-build-debug/.cmake/api/v1/reply/index-2024-08-28T20-03-47-0486.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/cmake-build-debug/.ninja_deps" beforeDir="false" afterPath="$PROJECT_DIR$/test/cmake-build-debug/.ninja_deps" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/cmake-build-debug/.ninja_log" beforeDir="false" afterPath="$PROJECT_DIR$/test/cmake-build-debug/.ninja_log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/cmake-build-debug/build.ninja" beforeDir="false" afterPath="$PROJECT_DIR$/test/cmake-build-debug/build.ninja" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/cmake-build-debug/test" beforeDir="false" afterPath="$PROJECT_DIR$/test/cmake-build-debug/test" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/test.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/test/test.cpp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -178,7 +155,15 @@
       <option name="project" value="LOCAL" />
       <updated>1724982493434</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="si pasa algo es culpa del profe">
+      <option name="closed" value="true" />
+      <created>1725038422174</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1725038422174</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -195,6 +180,7 @@
     </ignored-roots>
     <MESSAGE value="codigo de test" />
     <MESSAGE value="arreglo de lo que sale en git" />
-    <option name="LAST_COMMIT_MESSAGE" value="arreglo de lo que sale en git" />
+    <MESSAGE value="si pasa algo es culpa del profe" />
+    <option name="LAST_COMMIT_MESSAGE" value="si pasa algo es culpa del profe" />
   </component>
 </project>
