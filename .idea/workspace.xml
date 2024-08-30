@@ -25,12 +25,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2d1c5ab7-f203-486c-801a-b086dcf43140" name="Changes" comment="codigo de test">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/library/MPointer.h" beforeDir="false" afterPath="$PROJECT_DIR$/library/MPointer.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/cmake-build-debug/.ninja_deps" beforeDir="false" afterPath="$PROJECT_DIR$/test/cmake-build-debug/.ninja_deps" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/cmake-build-debug/.ninja_log" beforeDir="false" afterPath="$PROJECT_DIR$/test/cmake-build-debug/.ninja_log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/cmake-build-debug/test" beforeDir="false" afterPath="$PROJECT_DIR$/test/cmake-build-debug/test" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/test.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/test/test.cpp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -125,7 +121,8 @@
       <workItem from="1724874278456" duration="2230000" />
       <workItem from="1724878014299" duration="8000" />
       <workItem from="1724878135225" duration="5345000" />
-      <workItem from="1724901569922" duration="2048000" />
+      <workItem from="1724901569922" duration="3509000" />
+      <workItem from="1724981033950" duration="1015000" />
     </task>
     <task id="LOCAL-00001" summary="codigo de test">
       <option name="closed" value="true" />
