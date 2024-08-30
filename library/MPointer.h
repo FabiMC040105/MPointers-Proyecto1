@@ -10,32 +10,27 @@ class MPointer {
 
 private:
     T* ptr;
-    // constructor para la creacion a traves de New()
-    MPointer(T* p = nullptr) : ptr(p) {}
+    // Constructor para la creación a través de New()
+    MPointer() {
+        this->ptr = new T();
+    }
 
 public:
 
-    //Destructor
+    // Destructor
     ~MPointer() {
         delete ptr;
     }
-    //Operador de desreferencia (podemos acceder al valor al que apunta ptr y al devolver T& podemos modificar el valor apuntado directamente)
+    // Operador de desreferencia
     T& operator*() const {
         return *ptr;
     }
-    //Operador de acceso (permite acceder a miembros del objeto apuntado)
-    T* operator->() const {
-        return ptr;
-    }
+
     // Sobrecarga del operador &
-    T* operator&() const {
-        return ptr;
+    T& operator&() const {  // Devolver el valor almacenado en lugar del puntero
+        return *ptr;
     }
-    //Metodo para obtener el puntero subyacente (es util si necesitamos trabajar con el puntero directamente sin modificarlo)
-    T* get() const {
-        return ptr;
-    }
-    //Metodo para liberar la memoria ocupada por el puntero actual y asignarle un nuevo puntero
+
     void reset(T* p = nullptr) {
         delete ptr; // Libera la memoria antes de reasignar
         ptr = p; // Reasigna el puntero
