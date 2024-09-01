@@ -2,60 +2,90 @@
 #define POINTERWRAPPER_H
 
 #include <iostream>
+#include "MPointerGC.h"
 
 using namespace std;
 
 template <typename T>
 class MPointer {
-
 private:
     T* ptr;
-    // Constructor para la creación a través de New()
-    MPointer() {
-        this->ptr = new T();
-    }
+    int id;
+
+    // Constructor privado para la creación a través de New()
+    MPointer() : ptr(new T()), id(MPointerGC::getInstance().registerPointer<T>(ptr)) {}
 
 public:
+    // Constructor de copia
+    MPointer(const MPointer& other) : ptr(other.ptr), id(other.id) {
+        MPointerGC::getInstance().addReference(id);
+    }
+
+    // Constructor de movimiento
+    MPointer(MPointer&& other) noexcept : ptr(other.ptr), id(other.id) {
+        other.ptr = nullptr;
+        other.id = -1; //
+    }
 
     // Destructor
     ~MPointer() {
-        delete ptr;
+        if (ptr) {
+            MPointerGC::getInstance().removeReference<T>(id);
+        }
     }
+
     // Operador de desreferencia
     T& operator*() const {
         return *ptr;
     }
 
-    // Sobrecarga del operador &
-    T& operator&() const {  // Devolver el valor almacenado en lugar del puntero
-        return *ptr;
+    // Operador & para obtener el puntero interno
+    T* operator&() const {
+        return ptr;
     }
 
-    void reset(T* p = nullptr) {
-        delete ptr; // Libera la memoria antes de reasignar
-        ptr = p; // Reasigna el puntero
+    // Sobrecarga del operador de asignación para copiar punteros y actualizar el GC
+    MPointer<T>& operator=(const MPointer<T>& other) {
+        if (this != &other) {
+            if (ptr) {
+                MPointerGC::getInstance().removeReference<T>(id);
+            }
+
+            ptr = other.ptr;
+            id = other.id;
+
+            MPointerGC::getInstance().addReference(id);
+        }
+        return *this;
     }
-    // Prohibe la copia para evitar problemas de doble liberación de memoria
-    MPointer(const MPointer&) = delete;
-    MPointer& operator=(const MPointer&) = delete;
 
     // Permite la movida
-    MPointer(MPointer&& other) : ptr(other.ptr) {
-        other.ptr = nullptr;
+    MPointer& operator=(MPointer&& other) noexcept {
+        if (this != &other) {
+            if (ptr) {
+                MPointerGC::getInstance().removeReference<T>(id);
+            }
+
+            ptr = other.ptr;
+            id = other.id;
+
+            other.ptr = nullptr;
+            other.id = -1;
+        }
+        return *this;
     }
 
-    MPointer& operator=(MPointer&& other) {
-        if (this != &other) {
-            delete ptr;
-            ptr = other.ptr;
-            other.ptr = nullptr;
+    // Sobrecarga del operador de asignación para tipos diferentes
+    MPointer& operator=(const T& value) {
+        if (ptr) {
+            *ptr = value;
         }
         return *this;
     }
 
     // Función para crear un nuevo MPointer
     static MPointer<T> New() {
-        return MPointer<T>(new T());
+        return MPointer<T>();
     }
 };
 
