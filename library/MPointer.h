@@ -39,11 +39,6 @@ public:
         return *ptr;
     }
 
-    // Operador & para obtener el puntero interno
-    T* operator&() const {
-        return ptr;
-    }
-
     // Sobrecarga del operador de asignación para copiar punteros y actualizar el GC
     MPointer<T>& operator=(const MPointer<T>& other) {
         if (this != &other) {
