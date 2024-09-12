@@ -9,28 +9,33 @@ using namespace std;
 template <typename T>
 class MPointer {
 private:
-    T* ptr;
-    int id;
+    T* ptr;      // Puntero real a la memoria
+    int id;      // ID asignado por el Garbage Collector
 
-    // Constructor privado para la creación a través de New()
-    MPointer() : ptr(new T()), id(MPointerGC::getInstance().registerPointer<T>(ptr)) {}
+    // Constructor privado utilizado por New()
+    MPointer() : ptr(new T()), id(MPointerGC::getInstance().registerMemory(ptr)) {
+        cout << "MPointer created with ID: " << id << endl;
+    }
 
 public:
     // Constructor de copia
     MPointer(const MPointer& other) : ptr(other.ptr), id(other.id) {
         MPointerGC::getInstance().addReference(id);
+        cout << "MPointer copied with ID: " << id << endl;
     }
 
     // Constructor de movimiento
     MPointer(MPointer&& other) noexcept : ptr(other.ptr), id(other.id) {
         other.ptr = nullptr;
-        other.id = -1; //
+        other.id = -1;
+        cout << "MPointer moved with ID: " << id << endl;
     }
 
     // Destructor
     ~MPointer() {
         if (ptr) {
-            MPointerGC::getInstance().removeReference<T>(id);
+            MPointerGC::getInstance().removeReference(id);
+            cout << "MPointer destroyed with ID: " << id << endl;
         }
     }
 
@@ -39,26 +44,27 @@ public:
         return *ptr;
     }
 
-    // Sobrecarga del operador de asignación para copiar punteros y actualizar el GC
+    // Sobrecarga del operador de asignación para copiar
     MPointer<T>& operator=(const MPointer<T>& other) {
         if (this != &other) {
             if (ptr) {
-                MPointerGC::getInstance().removeReference<T>(id);
+                MPointerGC::getInstance().removeReference(id);
             }
 
             ptr = other.ptr;
             id = other.id;
 
             MPointerGC::getInstance().addReference(id);
+            cout << "MPointer assigned (copy) with ID: " << id << endl;
         }
         return *this;
     }
 
-    // Permite la movida
+    // Sobrecarga del operador de asignación para mover
     MPointer& operator=(MPointer&& other) noexcept {
         if (this != &other) {
             if (ptr) {
-                MPointerGC::getInstance().removeReference<T>(id);
+                MPointerGC::getInstance().removeReference(id);
             }
 
             ptr = other.ptr;
@@ -66,21 +72,33 @@ public:
 
             other.ptr = nullptr;
             other.id = -1;
+            cout << "MPointer assigned (move) with ID: " << id << endl;
         }
         return *this;
     }
 
-    // Sobrecarga del operador de asignación para tipos diferentes
-    MPointer& operator=(const T& value) {
+    // Sobrecarga del operador de asignación para asignar un valor
+    MPointer<T>& operator=(const T& value) {
         if (ptr) {
             *ptr = value;
+            cout << "MPointer value assigned with ID: " << id << endl;
+        } else {
+            throw runtime_error("Attempt to assign value to a null MPointer.");
         }
         return *this;
     }
 
-    // Función para crear un nuevo MPointer
     static MPointer<T> New() {
+        MPointerGC::getInstance().initialize(5);
         return MPointer<T>();
+    }
+
+    bool operator==(nullptr_t) const {
+        return ptr == nullptr;
+    }
+
+    bool operator!=(nullptr_t) const {
+        return ptr != nullptr;
     }
 };
 
