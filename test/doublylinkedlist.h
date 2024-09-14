@@ -6,7 +6,7 @@
 
 template <typename T>
 class DoublyLinkedList {
-private:
+public:
     struct Node {
     public:
         MPointer<T> data = MPointer<T>::New();
@@ -16,10 +16,11 @@ private:
         Node() = default;
     };
 
+    int length = 0;
+
     MPointer<Node> head;
     MPointer<Node> tail;
 
-public:
     DoublyLinkedList() : head(nullptr), tail(nullptr) {}
 
     ~DoublyLinkedList() {
@@ -36,6 +37,7 @@ public:
             head = newNode;
         }
         tail = newNode;
+        length++;
     }
 
     void clear() {
@@ -47,7 +49,10 @@ public:
             current = next;
         }
         head = tail = nullptr;
+        length = 0;
     }
+
+    int getLength(){ return length; }
 
     void haciadelante() const {
         MPointer<Node> current = head;
@@ -67,7 +72,115 @@ public:
         std::cout << std::endl;
     }
 
+    void bubbleSort(DoublyLinkedList<T>& list) {
+        bool swapped;
+        MPointer<Node> ptr1 = nullptr;
+        MPointer<Node> lptr = nullptr;
+
+        if (list.getHead() == nullptr)
+            return;
+
+        do {
+            swapped = false;
+            ptr1 = list.getHead();
+
+            while (ptr1->next != nullptr) {
+                if (*ptr1->data > *ptr1->next->data) {
+                    std::swap(ptr1->data, ptr1->next->data);
+                    swapped = true;
+                }
+                ptr1 = ptr1->next;
+            }
+            lptr = ptr1;
+        } while (swapped);
+    }
+
+    void insertionSort(DoublyLinkedList<T>& list) {
+        MPointer<typename DoublyLinkedList<T>::Node> sorted = nullptr;
+        MPointer<typename DoublyLinkedList<T>::Node> current = list.getHead();
+
+        while (current) {
+            MPointer<typename DoublyLinkedList<T>::Node> next = current->next;
+            if (!sorted || *current->data <= *sorted->data) {
+                current->next = sorted;
+                if (sorted) sorted->prev = current;
+                sorted = current;
+                sorted->prev = nullptr;
+            } else {
+                MPointer<typename DoublyLinkedList<T>::Node> s = sorted;
+                while (s->next && *current->data > *s->next->data) {
+                    s = s->next;
+                }
+                current->next = s->next;
+                if (s->next) s->next->prev = current;
+                s->next = current;
+                current->prev = s;
+            }
+            current = next;
+        }
+        list.getHead() = sorted;
+        if (sorted) {
+            MPointer<typename DoublyLinkedList<T>::Node> temp = sorted;
+            while (temp->next) temp = temp->next;
+            list.getTail() = temp;
+        }
+    }
+
+    MPointer<Node> getNodeAt(int index) const {
+        if (index < 0 || index >= length) {
+            throw out_of_range("Index out of bounds");
+        }
+        MPointer<Node> current = head;
+        for (int i = 0; i < index; ++i) {
+            current = current->next;
+        }
+        return current;
+    }
+
+    // Metodo para obetener el valor en el indice indicado
+    int get(int index) const {
+        return *getNodeAt(index)->data;
+    }
+
+    // Cambia el valor en el índice indicado
+    void set(int index, int val) {
+        MPointer<Node> node = getNodeAt(index);
+        node->data = val;
+    }
+
+    int partition(DoublyLinkedList& arr, int low, int high) {
+        int pivot = arr.get(high);
+        int i = low - 1;
+
+        for (int j = low; j < high; j++) {
+            if (arr.get(j) < pivot) {
+                i++;
+                int temp1 = arr.get(i);
+                int temp2 = arr.get(j);
+                arr.set(i, temp2);
+                arr.set(j, temp1);
+            }
+        }
+        // Se intercambia el valor del pivote con el valor en i + 1
+        int temp1 = arr.get(i + 1);
+        int temp2 = arr.get(high);
+        arr.set(i + 1, temp2);
+        arr.set(high, temp1);
+
+        return i + 1;
+    }
+
+    // QuickSort algorithm
+    void quickSort(DoublyLinkedList& arr, int low, int high) {
+        if (low < high) {
+            int pi = partition(arr, low, high);
+            quickSort(arr, low, pi - 1);
+            quickSort(arr, pi + 1, high);
+        }
+    }
+
     MPointer<Node> getHead() const { return head; }
+    void setHead(MPointer<Node> newHead) const { *head = *newHead; }
     MPointer<Node> getTail() const { return tail; }
 };
 

@@ -14,33 +14,33 @@ private:
 
     // Constructor privado utilizado por New()
     MPointer() : ptr(new T()), id(MPointerGC::getInstance().registerMemory(ptr)) {
-        cout << "MPointer created with ID: " << id << endl;
+        // cout << "MPointer created with ID: " << id << endl;
     }
 
 public:
     // Constructor de copia
     MPointer(const MPointer& other) : ptr(other.ptr), id(other.id) {
         MPointerGC::getInstance().addReference(id);
-        cout << "MPointer copied with ID: " << id << endl;
+        // cout << "MPointer copied with ID: " << id << endl;
     }
 
     // Constructor de movimiento
     MPointer(MPointer&& other) noexcept : ptr(other.ptr), id(other.id) {
         other.ptr = nullptr;
         other.id = -1;
-        cout << "MPointer moved with ID: " << id << endl;
+        // cout << "MPointer moved with ID: " << id << endl;
     }
 
     // Constructor de asignación desde nullptr
     MPointer(nullptr_t) : ptr(nullptr), id(-1) {
-        cout << "MPointer created from nullptr" << endl;
+        // cout << "MPointer created from nullptr" << endl;
     }
 
     // Destructor
     ~MPointer() {
         if (ptr) {
             MPointerGC::getInstance().removeReference(id);
-            cout << "MPointer destroyed with ID: " << id << endl;
+            // cout << "MPointer destroyed with ID: " << id << endl;
         }
     }
 
@@ -65,7 +65,7 @@ public:
             id = other.id;
 
             MPointerGC::getInstance().addReference(id);
-            cout << "MPointer assigned (copy) with ID: " << id << endl;
+            // cout << "MPointer assigned (copy) with ID: " << id << endl;
         }
         return *this;
     }
@@ -82,7 +82,7 @@ public:
 
             other.ptr = nullptr;
             other.id = -1;
-            cout << "MPointer assigned (move) with ID: " << id << endl;
+            // cout << "MPointer assigned (move) with ID: " << id << endl;
         }
         return *this;
     }
@@ -91,7 +91,7 @@ public:
     MPointer<T>& operator=(const T& value) {
         if (ptr) {
             *ptr = value;
-            cout << "MPointer value assigned with ID: " << id << endl;
+            // cout << "MPointer value assigned with ID: " << id << endl;
         } else {
             throw runtime_error("Attempt to assign value to a null MPointer.");
         }
