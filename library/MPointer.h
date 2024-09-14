@@ -31,12 +31,22 @@ public:
         cout << "MPointer moved with ID: " << id << endl;
     }
 
+    // Constructor de asignación desde nullptr
+    MPointer(nullptr_t) : ptr(nullptr), id(-1) {
+        cout << "MPointer created from nullptr" << endl;
+    }
+
     // Destructor
     ~MPointer() {
         if (ptr) {
             MPointerGC::getInstance().removeReference(id);
             cout << "MPointer destroyed with ID: " << id << endl;
         }
+    }
+
+    // Operador de acceso a miembros
+    T* operator->() const {
+        return ptr;
     }
 
     // Operador de desreferencia
@@ -98,6 +108,16 @@ public:
     }
 
     bool operator!=(nullptr_t) const {
+        return ptr != nullptr;
+    }
+
+    // Agregar operador < para poder usar en sort
+    bool operator<(const MPointer<T>& other) const {
+        return *ptr < *other.ptr;
+    }
+
+    // Conversión implícita a bool
+    explicit operator bool() const {
         return ptr != nullptr;
     }
 };
