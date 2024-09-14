@@ -93,7 +93,7 @@ public:
             *ptr = value;
             // cout << "MPointer value assigned with ID: " << id << endl;
         } else {
-            throw runtime_error("Attempt to assign value to a null MPointer.");
+            throw runtime_error("Intento de asignar valor a un puntero nulo");
         }
         return *this;
     }
@@ -111,12 +111,11 @@ public:
         return ptr != nullptr;
     }
 
-    // Agregar operador < para poder usar en sort
+    // para poder usar en sort
     bool operator<(const MPointer<T>& other) const {
         return *ptr < *other.ptr;
     }
 
-    // Conversión implícita a bool
     explicit operator bool() const {
         return ptr != nullptr;
     }

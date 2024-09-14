@@ -36,15 +36,14 @@ private:
     }
 
     void collectGarbage() {
-        lock_guard<mutex> lock(gcMutex); // Bloquear acceso a la lista
+        lock_guard<mutex> lock(gcMutex);
         cout << "Revisando las referencias en el Garbage Collector..." << endl;
         for (auto it = memoryRegistry.begin(); it != memoryRegistry.end(); ) {
             if (it->refCount <= 0) {
-                // Liberar memoria si el contador de referencias es 0
-                delete static_cast<char*>(it->memory);  // Eliminar memoria asignada
-                it = memoryRegistry.erase(it);  // Eliminar de la lista
+                delete static_cast<char*>(it->memory);
+                it = memoryRegistry.erase(it);
             } else {
-                ++it;  // Avanzar en la lista
+                ++it;
             }
         }
     }
@@ -59,22 +58,22 @@ public:
     // Inicializar el Garbage Collector
     void initialize(int intervalSeconds) {
         if (!running) {
-            startGC(intervalSeconds);  // Iniciar el hilo del GC
+            startGC(intervalSeconds);
         }
     }
 
     // Registrar nueva memoria y asignar un ID
     int registerMemory(void* memory) {
-        lock_guard<mutex> lock(gcMutex);  // Bloquear acceso a la lista
+        lock_guard<mutex> lock(gcMutex);
         memoryIdAutoIncrement += 1;
         int assignedId = memoryIdAutoIncrement;
-        memoryRegistry.push_back({memory, assignedId, 1});  // Inicialmente con 1 referencia
+        memoryRegistry.push_back({memory, assignedId, 1});
         return assignedId;
     }
 
     // Aumentar el contador de referencias
     void addReference(int id) {
-        lock_guard<mutex> lock(gcMutex);  // Bloquear acceso a la lista
+        lock_guard<mutex> lock(gcMutex);
         for (auto& entry : memoryRegistry) {
             if (entry.id == id) {
                 entry.refCount++;
@@ -90,8 +89,8 @@ public:
             if (it->id == id) {
                 it->refCount--;
                 if (it->refCount == 0) {
-                    delete static_cast<char*>(it->memory);  // Liberar memoria
-                    memoryRegistry.erase(it);  // Eliminar entrada de la lista
+                    delete static_cast<char*>(it->memory);
+                    memoryRegistry.erase(it);
                 }
                 return;
             }
@@ -100,7 +99,7 @@ public:
 
     // Buscar el ID asociado a una dirección de memoria
     int findId(void* memory) {
-        lock_guard<mutex> lock(gcMutex);  // Proteger acceso
+        lock_guard<mutex> lock(gcMutex);
         for (const auto& entry : memoryRegistry) {
             if (entry.memory == memory) {
                 return entry.id;
@@ -112,7 +111,7 @@ public:
     void stopGC() {
         running = false;
         if (gcThread.joinable()) {
-            gcThread.join();  // Esperar a que el hilo termine
+            gcThread.join();
         }
     }
 

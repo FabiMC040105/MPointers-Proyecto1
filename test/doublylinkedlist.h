@@ -128,7 +128,7 @@ public:
 
     MPointer<Node> getNodeAt(int index) const {
         if (index < 0 || index >= length) {
-            throw out_of_range("Index out of bounds");
+            throw out_of_range("Fuera de rango");
         }
         MPointer<Node> current = head;
         for (int i = 0; i < index; ++i) {
@@ -137,12 +137,10 @@ public:
         return current;
     }
 
-    // Metodo para obetener el valor en el indice indicado
     int get(int index) const {
         return *getNodeAt(index)->data;
     }
 
-    // Cambia el valor en el índice indicado
     void set(int index, int val) {
         MPointer<Node> node = getNodeAt(index);
         node->data = val;
@@ -161,7 +159,7 @@ public:
                 arr.set(j, temp1);
             }
         }
-        // Se intercambia el valor del pivote con el valor en i + 1
+
         int temp1 = arr.get(i + 1);
         int temp2 = arr.get(high);
         arr.set(i + 1, temp2);
@@ -170,7 +168,7 @@ public:
         return i + 1;
     }
 
-    // QuickSort algorithm
+
     void quickSort(DoublyLinkedList& arr, int low, int high) {
         if (low < high) {
             int pi = partition(arr, low, high);

@@ -17,7 +17,7 @@ int main() {
     // Prueba BubbleSort
     cout << "Prueba BubbleSort:" << endl;
     list.bubbleSort(list);
-    list.haciadelante();  // Verificar si está ordenada de menor a mayor
+    list.haciadelante();
 
     // Reiniciar lista
     list.clear();
